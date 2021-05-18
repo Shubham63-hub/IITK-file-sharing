@@ -136,12 +136,13 @@ const onuploadsuccess = ({file: url})=>{
 // });
 
 let toasttimer;
-const showtoast= ()=>{
-    toast.innerText = "Copied to Clipboard";
-    toast.style.transform = "translate(-50% ,0)";
+const showtoast= (msg)=>{
+    toast.innerText = msg;
+    // toast.style.transform = "translate(-50% ,0)";
+    toast.classList.add("show");
     clearTimeout(toasttimer);
     toasttimer = setTimeout(() => {
-        toast.style.transform = "translate(-50% ,60px)";
+        toast.classList.remove("show");
     }, 2000);
 
     
