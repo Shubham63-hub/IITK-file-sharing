@@ -7,7 +7,7 @@ const percentdiv = document.querySelector("#percent");
 const progressbar = document.querySelector(".progress-bar");
 const fileurl = document.querySelector("#fileurl");
 const copybutton = document.querySelector("#copybutton");
-const emailform = document.querySelector("#emailform");
+// const emailform = document.querySelector("#emailform");
 const toast = document.querySelector(".toast");
 
 const sharingcontainer = document.querySelector(".sharing-container");
@@ -103,37 +103,37 @@ const updateprogress = (e)=>{
 const onuploadsuccess = ({file: url})=>{
     // console.log(file);
     fileinput.value = "";
-    emailform[2].removeAttribute("disabled", "true");
+    // emailform[2].removeAttribute("disabled", "true");
     progresscontainer.style.display = "none";
     sharingcontainer.style.display = "block";
     fileurl.value = url;
 };
 
-emailform.addEventListener("submit", (e)=>{
-    e.preventDefault();
-    const url = fileurl.value;
+// emailform.addEventListener("submit", (e)=>{
+//     e.preventDefault();
+//     const url = fileurl.value;
 
-    const formData = {
-        uuid: url.split("/").splice(-1, 1)[0],
-        emailTo: emailform.elements["to-email"].value,
-        emailFrom: emailform.elements["from-email"].value
-    }
-    emailform[2].setAttribute("disabled", "true");
-    // console.log(formData);
+//     const formData = {
+//         uuid: url.split("/").splice(-1, 1)[0],
+//         emailTo: emailform.elements["to-email"].value,
+//         emailFrom: emailform.elements["from-email"].value
+//     }
+//     emailform[2].setAttribute("disabled", "true");
+//     // console.log(formData);
 
-    fetch(emailurl, {
-        method: "POST",
-        headers:{
-            "Content-type":"application-form"
-        },
-        body: JSON.stringify(formData)
-    }).then(res=> res.json()).then(({success})=>{
-        if(success){
-            sharingcontainer.style.display="none";
-            showtoast("Emailsent");
-        }
-    })
-});
+//     fetch(emailurl, {
+//         method: "POST",
+//         headers:{
+//             "Content-type":"application-form"
+//         },
+//         body: JSON.stringify(formData)
+//     }).then(res=> res.json()).then(({success})=>{
+//         if(success){
+//             sharingcontainer.style.display="none";
+//             showtoast("Emailsent");
+//         }
+//     })
+// });
 
 let toasttimer;
 const showtoast= ()=>{
