@@ -1,3 +1,4 @@
+//initial declarations 
 const dropzone = document.querySelector(".drop-zone");
 const fileinput = document.querySelector("#fileinput");
 const browsebtn = document.querySelector(".browsebtn");
@@ -8,12 +9,12 @@ const progressbar = document.querySelector(".progress-bar");
 const fileurl = document.querySelector("#fileurl");
 const copybutton = document.querySelector("#copybutton");
 const toast = document.querySelector(".toast");
-
 const sharingcontainer = document.querySelector(".sharing-container");
-const host = "https://demo-file-sharing.herokuapp.com/";
+const host = "https://demo-file-sharing.herokuapp.com/";                         // backend host
 const uploadurl = `${host}api/files`;
 const emailurl = `${host}api/files/send`;
 
+//when someone drags over the box
 dropzone.addEventListener("dragover", (e)=> {
     e.preventDefault();
 
@@ -23,10 +24,12 @@ dropzone.addEventListener("dragover", (e)=> {
     
 });
 
+//when dragging leaves the box 
 dropzone.addEventListener("dragleave",()=>{
     dropzone.classList.remove("dragged");
 });
 
+//file is dropped
 dropzone.addEventListener("drop",(e)=>{
     e.preventDefault();
     const files = e.dataTransfer.files;
@@ -37,23 +40,26 @@ dropzone.addEventListener("drop",(e)=>{
     }
 });
 
+//when to start uploadfile
 fileinput.addEventListener("change", ()=>{
     uploadfile();
 })
 
+//browsebtn function
 browsebtn.addEventListener("click", ()=>{
     fileinput.click();
 });
 
+//clipboard button function
 copybutton.addEventListener("click", ()=>{
     fileurl.select();
     document.execCommand("copy");
     showtoast("Link Copied");
 })
 
+//function for uploading file
 const uploadfile = ()=>{
 
-    
     if(fileinput.files.length > 1){
         fileinput.value = "";
         showtoast("only upload one file");
@@ -69,7 +75,8 @@ const uploadfile = ()=>{
 
     const formData = new FormData();
     formData.append("myfile",file);
-
+    
+    //request for the backend
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = ()=>{
@@ -84,12 +91,13 @@ const uploadfile = ()=>{
         fileinput.value = "";
         showtoast(`Error in upload: ${xhr.statusText}`)
     }
-
+    //post request
     xhr.open("POST", uploadurl);
     xhr.send(formData);
 
 };
 
+//for progress bar
 const updateprogress = (e)=>{
     const percent = Math.round((e.loaded/e.total) * 100);
     // console.log(percent);
@@ -98,6 +106,7 @@ const updateprogress = (e)=>{
     // progressbar.style.transform = 'scaleX(${percent}/100)'
 }
 
+//when upload is completed
 const onuploadsuccess = ({file: url})=>{
     // console.log(file);
     fileinput.value = "";
@@ -106,8 +115,7 @@ const onuploadsuccess = ({file: url})=>{
     fileurl.value = url;
 };
 
-
-
+//messages appear on screen
 let toasttimer;
 const showtoast= (msg)=>{
     toast.innerText = msg;
