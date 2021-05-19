@@ -3,6 +3,7 @@
     --border-color: #0288d147; 
     --container-width: 500px;
 }
+
 body, html{
     font-family: system-ui;
     background-color: var(--main-bg-color);
@@ -51,6 +52,7 @@ body{
     transform-origin: bottom;
     transition: transform 250ms ease-in-out;
 }
+
 .icon-container .right, .icon-container .left{
     filter: grayscale(0.5);
     transform: scale(.9);
