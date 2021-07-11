@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>IITK SHARE</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="upload-container">
         <div class="drop-zone">
@@ -18,6 +20,7 @@
             <input type="file" id="fileinput">
             <div class="title">Drop files here or, <span class="browsebtn">browse</span></div>
         </div>
+
         <div class="progress-container">
             <div class="bg-progress">
                 <div class="inner-conatiner">
@@ -25,23 +28,26 @@
                     <div class="percent-container"><span id="percent">0</span>%</div>
                     <div class="progress-bar"></div>
                 </div>
-                
+
             </div>
         </div>
+
         <div class="sharing-container">
             <p class="expire">Link expires in 24 hrs</p>
             <div class="input-container">
                 <input type="text" id="fileurl" readonly>
                 <img src="./copy-icon.svg" alt="copy-icon" id="copybutton">
             </div>
-            
+
         </div>
 
     </div>
+    
     <div class="upload-vector"></div>
     <div class="toast">
         Link copied.
     </div>
     <script src="index.js"></script>
 </body>
+
 </html>
